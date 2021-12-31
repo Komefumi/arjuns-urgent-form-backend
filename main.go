@@ -54,8 +54,6 @@ func main() {
 			Content: form.Content,
 		})
 
-		fmt.Println("got upto just before email sending")
-		fmt.Println(body.Bytes())
 		address := fmt.Sprintf("%s:%s", smtpHost, smtpPort)
 		err := smtp.SendMail(address, auth, emailFrom, emailTo, body.Bytes())
 		//err := smtp.SendMail("smtp.gmail.com:587", smtp.PlainAuth("", emailFrom, emailPassword, "smtp.gmail.com"), emailFrom, emailTo, body.Bytes())
@@ -65,7 +63,6 @@ func main() {
 			return
 		}
 
-		fmt.Println("Got upto here too?")
 		c.JSON(http.StatusOK, gin.H{"success": true})
 	})
 	r.Run(":" + PORT)
