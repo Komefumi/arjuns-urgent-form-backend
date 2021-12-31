@@ -8,6 +8,7 @@ import (
 	"os"
 	"text/template"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,6 +20,7 @@ type Form struct {
 func main() {
 	PORT := os.Getenv("PORT")
 	r := gin.Default()
+	r.Use(cors.Default())
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
