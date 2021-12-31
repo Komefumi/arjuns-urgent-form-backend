@@ -8,5 +8,6 @@ FROM alpine
 RUN adduser -S -D -H -h /app appuser
 USER appuser
 COPY --from=builder /build/my-form /app/
+COPY --from=builder /build/template.html /app/
 WORKDIR /app
 CMD ["./my-form"]
